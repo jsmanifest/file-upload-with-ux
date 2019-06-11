@@ -1,0 +1,16 @@
+{
+  "eslint.autoFixOnSave": true,
+  "eslint.validate": ["javascript", "javascriptreact"],
+  "prettier.eslintIntegration": true,
+  "eslint.alwaysShowStatus": true,
+  "[javascript]": {
+    "editor.formatOnSave": true
+  },
+  "[javascriptreact]": {
+    "editor.formatOnSave": true
+  },
+  "files.associations": {
+    "*.cs": "csharp",
+    "*.js": "javascriptreact"
+  }
+}

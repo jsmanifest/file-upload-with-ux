@@ -1,12 +1,28 @@
 .container {
-  padding: 12px;
+  padding: 8px;
   width: 100%;
   box-sizing: border-box;
   overflow-x: hidden;
 }
 
-input {
+.form {
+}
+
+.form input,
+button {
   margin-bottom: 15px;
+}
+
+.form button {
+  padding: 8px 17px;
+  border: 0;
+  color: #fff;
+  background: #265265;
+  cursor: pointer;
+}
+
+.form button:hover {
+  background: #1e3d4b;
 }
 
 .thumbnail-wrapper {

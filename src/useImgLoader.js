@@ -1,4 +1,14 @@
-import { useReducer, useEffect } from 'react'
+import { useReducer, useEffect, useCallback } from 'react'
+
+const api = {
+  upload(file) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve()
+      }, 550)
+    })
+  },
+}
 
 const initialState = {
   files: [],
@@ -11,6 +21,8 @@ const reducer = (state, action) => {
   switch (action.type) {
     case 'load':
       return { ...state, files: action.files }
+    case 'submit':
+      return { ...state }
     default:
       return state
   }
@@ -18,6 +30,15 @@ const reducer = (state, action) => {
 
 const useImgLoader = () => {
   const [state, dispatch] = useReducer(reducer, initialState)
+
+  const onSubmit = useCallback((e) => {
+    e.preventDefault()
+    if (state.files.length) {
+      dispatch({ type: 'submit' })
+    } else {
+      window.alert("You don't have any files loaded.")
+    }
+  }, [])
 
   const onChange = (e) => {
     if (e.target.files.length) {
@@ -52,6 +73,7 @@ const useImgLoader = () => {
 
   return {
     ...state,
+    onSubmit,
     onChange,
   }
 }

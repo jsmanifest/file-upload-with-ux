@@ -13,19 +13,26 @@ const Input = (props) => (
 )
 
 const App = () => {
-  const { files, onChange } = useImgLoader()
+  const { files, onSubmit, onChange } = useImgLoader()
 
   return (
     <div className='container'>
-      <Input onChange={onChange} />
-      <div>
-        {files.map(({ name, src }, index) => (
-          <div key={`thumb${index}`} className='thumbnail-wrapper'>
-            <img className='thumbnail' src={src} alt='' />
-            <div className='thumbnail-caption'>{name}</div>
-          </div>
-        ))}
-      </div>
+      <form className='form' onSubmit={onSubmit}>
+        <div>
+          <Input onChange={onChange} />
+          <button type='submit' className='submit-btn'>
+            Submit
+          </button>
+        </div>
+        <div>
+          {files.map(({ name, src }, index) => (
+            <div key={`thumb${index}`} className='thumbnail-wrapper'>
+              <img className='thumbnail' src={src} alt='' />
+              <div className='thumbnail-caption'>{name}</div>
+            </div>
+          ))}
+        </div>
+      </form>
     </div>
   )
 }
