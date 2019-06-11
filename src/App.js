@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import useImgLoader from './useImgLoader'
+import './App.css'
 
-function App() {
+const Input = (props) => (
+  <input
+    type='file'
+    accept='image/*'
+    name='img-loader-input'
+    multiple
+    {...props}
+  />
+)
+
+const App = () => {
+  const { files, onChange } = useImgLoader()
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='container'>
+      <Input onChange={onChange} />
+      <div>
+        {files.map(({ name, src }, index) => (
+          <div key={`thumb${index}`} className='thumbnail-wrapper'>
+            <img className='thumbnail' src={src} alt='' />
+            <div className='thumbnail-caption'>{name}</div>
+          </div>
+        ))}
+      </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
